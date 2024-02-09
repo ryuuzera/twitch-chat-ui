@@ -40,7 +40,10 @@ const Chat = ({ channel }: any) => {
           });
         });
       }
-      modifiedMessage.replace(/(@\w+)/g, `<span style="background-color: grey;">$1</span>`);
+      modifiedMessage = modifiedMessage.replace(
+        /(@\w+)/g,
+        '<span style="background-color: grey;" class="p-1 rounded-lg">$1</span>'
+      );
       console.log(modifiedMessage);
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -73,7 +76,7 @@ const Chat = ({ channel }: any) => {
   return (
     <div>
       <h1 className='text-red-500'>Chat da Twitch</h1>
-      <div>
+      <div className='space-y-2'>
         {messages.map((Message, index) => (
           <Message />
         ))}
