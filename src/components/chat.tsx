@@ -64,6 +64,12 @@ const Chat = ({ channel }: any) => {
                   src='https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/1'
                 />
               )}
+              {userstate.badges?.broadcaster && (
+                <img
+                  style={{ height: 18, width: 18 }}
+                  src='https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1'
+                />
+              )}
               <p key={Date.now() + 1} style={{ color: `${userstate['color'] ?? '#00FF7F'}`, lineHeight: '25px' }}>
                 {userstate['display-name']}:
               </p>
