@@ -51,7 +51,7 @@ const Chat = ({ channel }: any) => {
         ...prevMessages,
         () => (
           <>
-            <span className='flex items-center '>
+            <span className='flex items-center gap-1 '>
               {userstate.badges?.moderator && (
                 <img
                   style={{ height: 18, width: 18 }}
@@ -64,7 +64,7 @@ const Chat = ({ channel }: any) => {
                   src='https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/1'
                 />
               )}
-              <p key={Date.now() + 1} style={{ color: `${userstate['color'] ?? '#00FF7F'}` }}>
+              <p key={Date.now() + 1} style={{ color: `${userstate['color'] ?? '#00FF7F'}`, lineHeight: '25px' }}>
                 {userstate['display-name']}:
               </p>
             </span>
