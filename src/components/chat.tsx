@@ -44,6 +44,10 @@ const Chat = ({ channel }: any) => {
         /(@\w+)/g,
         '<span style="background-color: grey;" class="p-1 rounded-lg">$1</span>'
       );
+      modifiedMessage = modifiedMessage.replace(
+        /\b(https?:\/\/\S+|www\.\S+)\b/g,
+        '<a class="text-blue-500 underline" href="$1" target="_blank">$1</a>'
+      );
       console.log(modifiedMessage);
       setMessages((prevMessages) => [
         ...prevMessages,
