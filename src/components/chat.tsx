@@ -1,6 +1,7 @@
 'use client';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import tmi from 'tmi.js';
 
 const Chat = ({ channel }: any) => {
@@ -92,22 +93,38 @@ const Chat = ({ channel }: any) => {
     };
   }, []);
 
-  return (
-    <div className='min-h-screen'>
-      <div className='flex flex-col items-center justify-start h-full w-full'>
-        <div className='max-h-lg max-w-lg border-solid border-red-300'>
-          <div className='py-2 flex flex-row items-center justify-center'>
-            <h1 className='text-red-500 m-2'>Chat da Twitch</h1>
-          </div>
+  const messagesEndRef = useRef<any>(null);
 
-          <div className='flex flex-col gap-2 '>
-            {messages.map((Message) => (
-              <Message />
-            ))}
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  const bgSource = '/bg.png';
+  return (
+    <>
+      <Image src={bgSource} fill alt='bg' style={{ display: 'absolute', zIndex: -1, opacity: 0.5 }} />
+      <div className='min-h-screen min-w-screen'>
+        <div className='flex flex-col items-center justify-center h-screen w-full'>
+          <div className='h-3/4 w-3/4 border-solid rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  border-gray-100'>
+            <div className='py-2 flex fl  ex-row justify-center items-center'>
+              <h1 className='text-purple-500 font-bold m-2 h-full '>Chat de {channel}</h1>
+            </div>
+            <div
+              style={{ maxHeight: 'calc(100% - 57px)' }}
+              className='flex flex-col gap-2 p-3 h-full overflow-y-scroll
+          '>
+              {messages.map((Message) => (
+                <Message />
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
